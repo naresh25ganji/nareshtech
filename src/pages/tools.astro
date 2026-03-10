@@ -2,24 +2,67 @@
 import Base from '../layouts/Base.astro';
 const tools = [
   {
-    category: "AI Writing",
+    category: "AI Coding Tools",
     items: [
-      { name: "Tool Name 1", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: "Best Value" },
-      { name: "Tool Name 2", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: null },
+      { name: "Cursor IDE", desc: "AI-powered code editor with intelligent suggestions and chat assistance. Built for modern development.", url: "https://cursor.sh", badge: "Editor's Pick" },
+      { name: "GitHub Copilot", desc: "Your AI pair programmer that suggests code completions and entire functions in real-time.", url: "https://github.com/features/copilot", badge: "Popular" },
+      { name: "Claude Code", desc: "AI assistant for coding tasks with excellent context understanding and code generation.", url: "https://claude.ai/code", badge: null },
     ]
   },
   {
-    category: "AI Coding",
+    category: "Development Tools",
     items: [
-      { name: "Tool Name 3", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: "Editor's Pick" },
-      { name: "Tool Name 4", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: null },
+      { name: "Visual Studio Code", desc: "Free code editor with massive extension ecosystem. Perfect for web development.", url: "https://code.visualstudio.com", badge: "Free" },
+      { name: "GitKraken", desc: "Beautiful Git GUI client that makes version control visual and intuitive.", url: "https://www.gitkraken.com", badge: null },
+      { name: "Postman", desc: "API development environment with testing, documentation, and collaboration features.", url: "https://www.postman.com", badge: "Freemium" },
     ]
   },
   {
-    category: "Hosting & Domains",
+    category: "Hosting & Deployment",
     items: [
-      { name: "Cloudflare", desc: "Best domain registrar at cost price. No markup, ever.", url: "https://cloudflare.com/registrar", badge: "Free" },
-      { name: "Cloudflare Pages", desc: "Free hosting with global CDN. Perfect for blogs.", url: "https://pages.cloudflare.com", badge: "Free" },
+      { name: "Cloudflare Pages", desc: "Free hosting with global CDN. Perfect for static sites and blogs.", url: "https://pages.cloudflare.com", badge: "Free" },
+      { name: "Vercel", desc: "Deploy and host web apps with zero config. Excellent for Next.js and React.", url: "https://vercel.com", badge: "Freemium" },
+      { name: "Railway", desc: "Simple deployment platform that takes your code from repo to production in minutes.", url: "https://railway.app", badge: null },
+      { name: "DigitalOcean", desc: "Reliable cloud infrastructure with simple pricing and great developer experience.", url: "https://www.digitalocean.com", badge: null },
+    ]
+  },
+  {
+    category: "Domains & DNS",
+    items: [
+      { name: "Cloudflare Registrar", desc: "Best domain registrar at cost price. No markup fees, ever.", url: "https://cloudflare.com/registrar", badge: "Best Value" },
+      { name: "Namecheap", desc: "Affordable domain registration with free WHOIS privacy protection.", url: "https://www.namecheap.com", badge: null },
+    ]
+  },
+  {
+    category: "Backend & Database",
+    items: [
+      { name: "Supabase", desc: "Open source Firebase alternative with PostgreSQL, auth, and storage.", url: "https://supabase.com", badge: "Open Source" },
+      { name: "PlanetScale", desc: "MySQL-compatible database serverless platform with branching and scaling.", url: "https://planetscale.com", badge: "Freemium" },
+      { name: "MongoDB Atlas", desc: "Fully managed cloud database with automatic scaling and global distribution.", url: "https://www.mongodb.com/cloud/atlas", badge: null },
+    ]
+  },
+  {
+    category: "AI Writing & Content",
+    items: [
+      { name: "ChatGPT Plus", desc: "Advanced AI assistant for writing, brainstorming, and content creation.", url: "https://chat.openai.com", badge: "Popular" },
+      { name: "Claude Pro", desc: "AI assistant with excellent writing capabilities and longer context windows.", url: "https://claude.ai", badge: null },
+      { name: "Jasper", desc: "AI writing platform specialized for marketing content and blog posts.", url: "https://www.jasper.ai", badge: "Premium" },
+    ]
+  },
+  {
+    category: "Design & UI",
+    items: [
+      { name: "Figma", desc: "Collaborative design tool with powerful features for UI/UX design.", url: "https://www.figma.com", badge: "Free" },
+      { name: "Tailwind CSS", desc: "Utility-first CSS framework for rapid custom design development.", url: "https://tailwindcss.com", badge: "Free" },
+      { name: "Unsplash", desc: "Beautiful, free stock photos for your blog and website projects.", url: "https://unsplash.com", badge: "Free" },
+    ]
+  },
+  {
+    category: "Analytics & SEO",
+    items: [
+      { name: "Google Analytics", desc: "Free web analytics service to track and report website traffic.", url: "https://analytics.google.com", badge: "Free" },
+      { name: "Google Search Console", desc: "Free tool to monitor and maintain your site's presence in Google search results.", url: "https://search.google.com/search-console", badge: "Free" },
+      { name: "Ahrefs", desc: "Comprehensive SEO toolset for keyword research, backlink analysis, and rank tracking.", url: "https://ahrefs.com", badge: "Premium" },
     ]
   },
 ];
@@ -73,7 +116,7 @@ const tools = [
   .tool-top { display: flex; justify-content: space-between; align-items: center; }
   .tool-name { color: var(--text); font-weight: 700; font-size: 0.95rem; }
   .tool-badge {
-    background: rgba(0,229,255,0.1); color: var(--accent);
+    background: rgba(9,105,218,0.08); color: var(--accent);
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; padding: 0.15rem 0.55rem; border-radius: 999px;
   }
