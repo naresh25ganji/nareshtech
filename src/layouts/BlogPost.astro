@@ -1,0 +1,117 @@
+---
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+const { title, description, pubDate, tags = [], affiliate } = frontmatter;
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title={title} description={description}>
+  <article class="post-container">
+
+    <!-- Top Ad Unit -->
+    <div class="ad-unit">📢 Advertisement — AdSense unit goes here</div>
+
+    <header class="post-header">
+      <div class="tags">
+        {tags.map((tag: string) => <span class="tag">{tag}</span>)}
+      </div>
+      <h1 class="post-title">{title}</h1>
+      <p class="post-meta">By <strong>Naresh</strong> · {formattedDate}</p>
+      {description && <p class="post-desc">{description}</p>}
+    </header>
+
+    <!-- Affiliate Banner (optional, set in frontmatter) -->
+    {affiliate && (
+      <div class="affiliate-banner">
+        <span>🔗 Recommended:</span>
+        <a href={affiliate.url} target="_blank" rel="noopener noreferrer nofollow">{affiliate.label}</a>
+        <span class="affiliate-note">(affiliate link)</span>
+      </div>
+    )}
+
+    <div class="post-body">
+      <slot />
+    </div>
+
+    <!-- Mid Article Ad -->
+    <div class="ad-unit">📢 Mid-article AdSense unit goes here</div>
+
+    <!-- Bottom CTA -->
+    <div class="post-cta">
+      <p>Enjoyed this? <a href="/blog">Read more articles →</a></p>
+    </div>
+
+  </article>
+</Base>
+
+<style>
+  .post-container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  .post-header { margin-bottom: 2.5rem; }
+  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+  }
+  .post-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .post-meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+  .post-desc { color: var(--muted); font-size: 1.05rem; line-height: 1.6; border-left: 3px solid var(--accent); padding-left: 1rem; }
+  .affiliate-banner {
+    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(124,58,237,0.05));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .affiliate-note { color: var(--muted); font-size: 0.75rem; }
+  .post-body { line-height: 1.8; }
+  .post-body h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--text); }
+  .post-body h3 { font-size: 1.2rem; margin: 2rem 0 0.75rem; color: var(--text); }
+  .post-body p { margin-bottom: 1.2rem; color: var(--text); }
+  .post-body a { color: var(--accent); }
+  .post-body code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.875em;
+  }
+  .post-body pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .post-body pre code { background: none; border: none; padding: 0; }
+  .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1.2rem; }
+  .post-body li { margin-bottom: 0.4rem; }
+  .post-cta {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+</style>

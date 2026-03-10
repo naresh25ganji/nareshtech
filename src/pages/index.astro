@@ -1,0 +1,218 @@
+---
+import Base from '../layouts/Base.astro';
+const allPosts = Object.values(import.meta.glob('./blog/*.md', { eager: true })) as any[];
+const posts = allPosts
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
+  .slice(0, 6);
+---
+<Base title="Home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🤖 Tech & AI Blog</div>
+      <h1 class="hero-title">
+        Cut through the<br/>
+        <span class="gradient-text">AI noise.</span>
+      </h1>
+      <p class="hero-sub">
+        Tutorials, tools, and honest takes on AI, software, and tech — written by Naresh.
+      </p>
+      <div class="hero-actions">
+        <a href="/blog" class="btn-primary">Read the Blog</a>
+        <a href="/about" class="btn-ghost">About me →</a>
+      </div>
+    </div>
+    <div class="hero-grid-bg"></div>
+  </section>
+
+  <!-- Ad Banner -->
+  <div class="container">
+    <div class="ad-unit">📢 Advertisement — AdSense banner goes here</div>
+  </div>
+
+  <!-- Latest Posts -->
+  <section class="posts-section container">
+    <div class="section-header">
+      <h2 class="section-title">Latest Articles</h2>
+      <a href="/blog" class="view-all">View all →</a>
+    </div>
+    <div class="posts-grid">
+      {posts.map(post => (
+        <article class="post-card">
+          <div class="card-tags">
+            {post.frontmatter.tags?.slice(0,2).map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <h3 class="card-title">
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </h3>
+          <p class="card-desc">{post.frontmatter.description}</p>
+          <div class="card-footer">
+            <span class="card-date">
+              {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </span>
+            <a href={post.url} class="card-read">Read →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Affiliate Section -->
+  <section class="affiliate-section container">
+    <h2 class="section-title">Tools I Recommend</h2>
+    <p class="section-sub">Handpicked tools I actually use. Some links are affiliate links — they cost you nothing extra.</p>
+    <div class="tools-grid">
+      <a href="#" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">⚡</div>
+        <div>
+          <p class="tool-name">Affiliate Tool 1</p>
+          <p class="tool-desc">Add your affiliate product description here.</p>
+        </div>
+      </a>
+      <a href="#" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">🛠️</div>
+        <div>
+          <p class="tool-name">Affiliate Tool 2</p>
+          <p class="tool-desc">Add your affiliate product description here.</p>
+        </div>
+      </a>
+      <a href="#" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">🚀</div>
+        <div>
+          <p class="tool-name">Affiliate Tool 3</p>
+          <p class="tool-desc">Add your affiliate product description here.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 1.5rem 6rem;
+    text-align: center;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub { color: var(--muted); font-size: 1.1rem; max-width: 480px; margin: 0 auto 2rem; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { opacity: 0.85; text-decoration: none; }
+  .btn-ghost {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
+
+  /* Posts */
+  .posts-section { padding: 4rem 1.5rem; }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  .section-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  .view-all { color: var(--accent); font-size: 0.9rem; }
+  .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.25rem; }
+  .post-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tag {
+    background: rgba(0,229,255,0.08);
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+  }
+  .card-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+  .card-title a { color: var(--text); text-decoration: none; }
+  .card-title a:hover { color: var(--accent); }
+  .card-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; flex: 1; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+  .card-date { color: var(--muted); font-size: 0.8rem; }
+  .card-read { color: var(--accent); font-size: 0.85rem; font-weight: 600; }
+
+  /* Affiliate */
+  .affiliate-section { padding: 4rem 1.5rem; }
+  .section-sub { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; margin-bottom: 2rem; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .tool-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .tool-card:hover { border-color: var(--accent2); text-decoration: none; }
+  .tool-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .tool-name { color: var(--text); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .tool-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+</style>

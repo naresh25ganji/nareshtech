@@ -1,0 +1,198 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+const { title, description = "Tech & AI insights, tutorials, and tools by Naresh.", image } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | NareshTech</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:type" content="website" />
+  {image && <meta property="og:image" content={image} />}
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <!-- Google AdSense — replace with your publisher ID -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <!-- Google Analytics — replace with your GA4 ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <style is:global>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --surface: #16161f;
+      --border: #1e1e2e;
+      --accent: #00e5ff;
+      --accent2: #7c3aed;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+
+    /* AdSense ad unit style */
+    .ad-unit {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="/" class="logo">
+        <span class="logo-main">Naresh</span><span class="logo-accent">Tech</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/tools">Tools</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- Top Banner Ad — replace with real AdSense code -->
+  <!-- <div class="ad-banner">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins>
+  </div> -->
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-logo"><span>Naresh</span><span class="accent">Tech</span></p>
+      <p class="footer-desc">Tech & AI insights, tutorials, and tools.</p>
+      <ul class="footer-links">
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+      <p class="footer-copy">&copy; {new Date().getFullYear()} NareshTech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo-main { color: var(--text); }
+  .logo-accent { color: var(--accent); }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-links a {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 6rem;
+    padding: 3rem 1.5rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+  .footer-logo .accent { color: var(--accent); }
+  .footer-desc { color: var(--muted); font-size: 0.9rem; }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer-links a { color: var(--muted); font-size: 0.85rem; }
+  .footer-links a:hover { color: var(--accent); text-decoration: none; }
+  .footer-copy { color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem; }
+</style>

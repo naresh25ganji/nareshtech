@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+const allPosts = Object.values(import.meta.glob('./*.md', { eager: true })) as any[];
+const posts = allPosts.sort((a, b) =>
+  new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+);
+---
+<Base title="Blog" description="Tech & AI articles, tutorials and insights by Naresh.">
+  <section class="blog-container">
+    <div class="blog-header">
+      <h1 class="blog-title">All Articles</h1>
+      <p class="blog-sub">{posts.length} articles on Tech, AI, and software.</p>
+    </div>
+
+    <div class="ad-unit">📢 Advertisement — AdSense unit goes here</div>
+
+    <div class="posts-list">
+      {posts.map(post => (
+        <article class="list-item">
+          <div class="list-meta">
+            <span class="list-date">
+              {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </span>
+            <div class="list-tags">
+              {post.frontmatter.tags?.slice(0,3).map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div class="list-content">
+            <h2 class="list-title"><a href={post.url}>{post.frontmatter.title}</a></h2>
+            <p class="list-desc">{post.frontmatter.description}</p>
+          </div>
+          <a href={post.url} class="list-arrow">→</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .blog-container { max-width: 800px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .blog-header { margin-bottom: 2.5rem; }
+  .blog-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; }
+  .blog-sub { color: var(--muted); margin-top: 0.5rem; }
+  .posts-list { display: flex; flex-direction: column; gap: 0; }
+  .list-item {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .list-item:hover { background: rgba(255,255,255,0.01); }
+  .list-meta { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.2rem; }
+  .list-date { color: var(--muted); font-size: 0.8rem; }
+  .list-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .tag {
+    background: rgba(0,229,255,0.08);
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+  }
+  .list-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .list-title a { color: var(--text); text-decoration: none; }
+  .list-title a:hover { color: var(--accent); }
+  .list-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
+  .list-arrow { color: var(--muted); font-size: 1.2rem; padding-top: 0.2rem; transition: color 0.2s; }
+  .list-item:hover .list-arrow { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .list-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .list-arrow { display: none; }
+  }
+</style>

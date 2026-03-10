@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About" description="About Naresh — tech blogger, developer, and AI enthusiast.">
+  <section class="about-container">
+    <div class="about-header">
+      <div class="avatar">N</div>
+      <div>
+        <h1 class="about-title">Hey, I'm Naresh 👋</h1>
+        <p class="about-role">Tech blogger · Developer · AI enthusiast</p>
+      </div>
+    </div>
+
+    <div class="about-body">
+      <p>
+        Welcome to <strong>NareshTech</strong> — my corner of the internet where I write about AI, software development, and the tools that actually matter.
+      </p>
+      <p>
+        I started this blog because most tech content is either too shallow or too academic. I want to give you practical, honest takes you can act on.
+      </p>
+
+      <h2>What I write about</h2>
+      <ul>
+        <li>🤖 AI tools and how to actually use them</li>
+        <li>💻 Web development tutorials</li>
+        <li>🛠️ Tools and products I genuinely recommend</li>
+        <li>📈 Tech news and analysis</li>
+      </ul>
+
+      <h2>Disclosure</h2>
+      <p>
+        Some links on this site are affiliate links. This means I earn a small commission if you buy through them — at no extra cost to you. I only recommend products I actually use and believe in.
+      </p>
+
+      <h2>Get in touch</h2>
+      <p>
+        Have a question, topic suggestion, or want to work together?
+        <a href="mailto:hello@nareshtech.net">hello@nareshtech.net</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-container { max-width: 700px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .about-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; }
+  .avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: #000;
+    flex-shrink: 0;
+  }
+  .about-title { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; }
+  .about-role { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+  .about-body { line-height: 1.8; }
+  .about-body p { margin-bottom: 1.2rem; }
+  .about-body h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; color: var(--text); }
+  .about-body ul { padding-left: 0; list-style: none; margin-bottom: 1.2rem; }
+  .about-body li { margin-bottom: 0.5rem; }
+  .about-body strong { color: var(--accent); }
+</style>

@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+const tools = [
+  {
+    category: "AI Writing",
+    items: [
+      { name: "Tool Name 1", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: "Best Value" },
+      { name: "Tool Name 2", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: null },
+    ]
+  },
+  {
+    category: "AI Coding",
+    items: [
+      { name: "Tool Name 3", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: "Editor's Pick" },
+      { name: "Tool Name 4", desc: "Add your affiliate product here. Replace with real link.", url: "#", badge: null },
+    ]
+  },
+  {
+    category: "Hosting & Domains",
+    items: [
+      { name: "Cloudflare", desc: "Best domain registrar at cost price. No markup, ever.", url: "https://cloudflare.com/registrar", badge: "Free" },
+      { name: "Cloudflare Pages", desc: "Free hosting with global CDN. Perfect for blogs.", url: "https://pages.cloudflare.com", badge: "Free" },
+    ]
+  },
+];
+---
+<Base title="Tools" description="Tools and resources recommended by Naresh — some are affiliate links.">
+  <section class="tools-container">
+    <div class="tools-header">
+      <h1 class="tools-title">Recommended Tools</h1>
+      <p class="tools-sub">
+        Tools I personally use and recommend. Some links are affiliate links — they cost you nothing extra and help support this blog.
+      </p>
+    </div>
+
+    <div class="ad-unit">📢 Advertisement — AdSense unit goes here</div>
+
+    {tools.map(section => (
+      <div class="tools-section">
+        <h2 class="category-title">{section.category}</h2>
+        <div class="tools-grid">
+          {section.items.map(tool => (
+            <a href={tool.url} class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+              <div class="tool-top">
+                <span class="tool-name">{tool.name}</span>
+                {tool.badge && <span class="tool-badge">{tool.badge}</span>}
+              </div>
+              <p class="tool-desc">{tool.desc}</p>
+              <span class="tool-link">Visit site →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .tools-container { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .tools-header { margin-bottom: 2.5rem; }
+  .tools-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; }
+  .tools-sub { color: var(--muted); margin-top: 0.5rem; font-size: 0.9rem; max-width: 500px; }
+  .tools-section { margin-bottom: 3rem; }
+  .category-title { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .tool-card {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem;
+    text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+  }
+  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+  .tool-top { display: flex; justify-content: space-between; align-items: center; }
+  .tool-name { color: var(--text); font-weight: 700; font-size: 0.95rem; }
+  .tool-badge {
+    background: rgba(0,229,255,0.1); color: var(--accent);
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.15rem 0.55rem; border-radius: 999px;
+  }
+  .tool-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.4; flex: 1; }
+  .tool-link { color: var(--accent); font-size: 0.8rem; font-weight: 600; margin-top: auto; }
+</style>
