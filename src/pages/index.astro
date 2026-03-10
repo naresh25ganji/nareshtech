@@ -64,25 +64,46 @@ const posts = allPosts
     <h2 class="section-title">Tools I Recommend</h2>
     <p class="section-sub">Handpicked tools I actually use. Some links are affiliate links — they cost you nothing extra.</p>
     <div class="tools-grid">
-      <a href="#" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+      <a href="https://cursor.sh" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">🤖</div>
+        <div>
+          <p class="tool-name">Cursor IDE</p>
+          <p class="tool-desc">AI-powered code editor that helps you write code faster with intelligent suggestions and chat assistance.</p>
+        </div>
+      </a>
+      <a href="https://github.com/features/copilot" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
         <div class="tool-icon">⚡</div>
         <div>
-          <p class="tool-name">Affiliate Tool 1</p>
-          <p class="tool-desc">Add your affiliate product description here.</p>
+          <p class="tool-name">GitHub Copilot</p>
+          <p class="tool-desc">Your AI pair programmer that suggests code completions and entire functions in real-time.</p>
         </div>
       </a>
-      <a href="#" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+      <a href="https://vercel.com" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">�</div>
+        <div>
+          <p class="tool-name">Vercel</p>
+          <p class="tool-desc">Deploy and host your web apps with zero config - perfect for Next.js, React, and static sites.</p>
+        </div>
+      </a>
+      <a href="https://railway.app" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
         <div class="tool-icon">🛠️</div>
         <div>
-          <p class="tool-name">Affiliate Tool 2</p>
-          <p class="tool-desc">Add your affiliate product description here.</p>
+          <p class="tool-name">Railway</p>
+          <p class="tool-desc">Simple deployment platform that takes your code from repository to production in minutes.</p>
         </div>
       </a>
-      <a href="#" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
-        <div class="tool-icon">🚀</div>
+      <a href="https://www.digitalocean.com/products/app-platform" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">☁️</div>
         <div>
-          <p class="tool-name">Affiliate Tool 3</p>
-          <p class="tool-desc">Add your affiliate product description here.</p>
+          <p class="tool-name">DigitalOcean App Platform</p>
+          <p class="tool-desc">Build, deploy, and scale apps quickly using managed PaaS with simple pricing.</p>
+        </div>
+      </a>
+      <a href="https://supabase.com" class="tool-card" target="_blank" rel="noopener noreferrer nofollow">
+        <div class="tool-icon">🗄️</div>
+        <div>
+          <p class="tool-name">Supabase</p>
+          <p class="tool-desc">Open source Firebase alternative - build real-time apps with PostgreSQL, auth, and storage.</p>
         </div>
       </a>
     </div>
@@ -103,8 +124,8 @@ const posts = allPosts
   .hero-grid-bg {
     position: absolute; inset: 0; z-index: 0;
     background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(9,105,218,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(9,105,218,0.02) 1px, transparent 1px);
     background-size: 40px 40px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
   }
@@ -138,16 +159,16 @@ const posts = allPosts
   .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .btn-primary {
     background: var(--accent);
-    color: #000;
+    color: #ffffff;
     font-weight: 700;
     font-size: 0.9rem;
     padding: 0.75rem 1.75rem;
     border-radius: 8px;
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: background-color 0.2s;
     letter-spacing: 0.02em;
   }
-  .btn-primary:hover { opacity: 0.85; text-decoration: none; }
+  .btn-primary:hover { background: #0550ae; text-decoration: none; }
   .btn-ghost {
     color: var(--text);
     font-weight: 500;
@@ -174,12 +195,13 @@ const posts = allPosts
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .post-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
   .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
   .tag {
-    background: rgba(0,229,255,0.08);
+    background: rgba(9,105,218,0.08);
     color: var(--accent);
     font-size: 0.7rem;
     font-weight: 600;
@@ -209,9 +231,10 @@ const posts = allPosts
     border-radius: 12px;
     padding: 1.25rem;
     text-decoration: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .tool-card:hover { border-color: var(--accent2); text-decoration: none; }
+  .tool-card:hover { border-color: var(--accent2); text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
   .tool-icon { font-size: 1.5rem; flex-shrink: 0; }
   .tool-name { color: var(--text); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
   .tool-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
